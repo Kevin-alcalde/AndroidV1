@@ -16,6 +16,10 @@ public class ResgisterActivity extends AppCompatActivity {
 
     EditText usernameText;
     EditText passwordText;
+    EditText mailText;
+    EditText nameText;
+    EditText lastnameText;
+    EditText cityText;
     TextView resultado;
     String username;
 
@@ -26,6 +30,11 @@ public class ResgisterActivity extends AppCompatActivity {
         usernameText=findViewById(R.id.UsernameText);
         passwordText=findViewById(R.id.PasswordText);
         resultado=findViewById(R.id.result);
+        mailText=findViewById(R.id.MailText);
+        lastnameText=findViewById(R.id.LastnameText);
+        cityText=findViewById(R.id.CityText);
+        nameText=findViewById(R.id.NameText);
+
 
     }
 
@@ -46,8 +55,10 @@ public class ResgisterActivity extends AppCompatActivity {
 
 
 
-        Jugador jugador = new Jugador (usernameText.getText().toString(),passwordText.getText().toString());
+        Jugador jugador = new Jugador (usernameText.getText().toString(),passwordText.getText().toString(),mailText.getText().toString(),nameText.getText().toString(),lastnameText.getText().toString(),cityText.getText().toString());
         Call<Jugador> call = ApiClient.getUserService().createPostRegister(jugador);
+
+        ////////////////////////////////////////////////////
         call.enqueue(new Callback<Jugador>() {
             @Override
             public void onResponse(Call<Jugador> call, Response<Jugador> response) {
@@ -62,7 +73,7 @@ public class ResgisterActivity extends AppCompatActivity {
             }
 
         });
-
+/////////////////////////////////
         resultado.setText("Registrado Correctamente");
 
 

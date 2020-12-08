@@ -73,6 +73,15 @@ public class PerfilActivity extends AppCompatActivity {
             public void onResponse(Call<Jugador> call, Response<Jugador> response) {
                 Jugador jugadorRecibido = response.body();
                 username.setText(jugadorRecibido.getUsername());
+                mail.setText(jugadorRecibido.getMail());
+                lastname.setText(jugadorRecibido.getLastname());
+                name.setText(jugadorRecibido.getName());
+                city.setText(jugadorRecibido.getCity());
+
+
+
+
+
             }
 
             @Override

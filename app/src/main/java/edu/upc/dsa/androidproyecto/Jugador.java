@@ -89,6 +89,14 @@ public class Jugador implements Serializable {
         this.level = level;
     }
 
+    public Jugador(String username, String password, String mail, String name, String lastname, String city) {
+        this.username = username;
+        this.mail = mail;
+        this.name = name;
+        this.lastname = lastname;
+        this.city = city;
+        this.password = password;
+    }
 
     public Jugador(String id, String username, String mail, String name, String lastname, String city, String password, String life, String level) {
         this.id = id;

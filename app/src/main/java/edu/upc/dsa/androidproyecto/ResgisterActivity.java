@@ -1,9 +1,12 @@
 package edu.upc.dsa.androidproyecto;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ public class ResgisterActivity extends AppCompatActivity {
     EditText cityText;
     TextView resultado;
     String username;
+    int code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,11 @@ public class ResgisterActivity extends AppCompatActivity {
         lastnameText=findViewById(R.id.LastnameText);
         cityText=findViewById(R.id.CityText);
         nameText=findViewById(R.id.NameText);
+
+
+
+
+
 
 
     }
@@ -62,8 +71,44 @@ public class ResgisterActivity extends AppCompatActivity {
         call.enqueue(new Callback<Jugador>() {
             @Override
             public void onResponse(Call<Jugador> call, Response<Jugador> response) {
-                Jugador jugadorRegistrado = response.body();
-                username = jugadorRegistrado.getUsername();
+
+                code = response.code(); /*No marca el 201*/
+
+                Log.i("G4", "codigo"+ " "+ code);
+
+                if (code == 201)
+                {
+
+                    AlertDialog alertDialog = new AlertDialog.Builder (ResgisterActivity.this).create();
+                    alertDialog.setTitle("Error: "+ code );
+                    alertDialog.setMessage("404: Aun no te has registrado. Registrate!");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+
+                }
+                else if (code == 500) /*Si lo marca*/
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder (ResgisterActivity.this).create();
+                    alertDialog.setTitle("Error: "+ code );
+                    alertDialog.setMessage("500: Ya estas registrado");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+
+                }
+
+
+
+
 
             }
 

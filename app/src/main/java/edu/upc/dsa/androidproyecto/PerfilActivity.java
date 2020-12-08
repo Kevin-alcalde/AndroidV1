@@ -1,7 +1,9 @@
 package edu.upc.dsa.androidproyecto;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -71,12 +73,45 @@ public class PerfilActivity extends AppCompatActivity {
         call.enqueue(new Callback<Jugador>() {
             @Override
             public void onResponse(Call<Jugador> call, Response<Jugador> response) {
-                Jugador jugadorRecibido = response.body();
-                username.setText(jugadorRecibido.getUsername());
-                mail.setText(jugadorRecibido.getMail());
-                lastname.setText(jugadorRecibido.getLastname());
-                name.setText(jugadorRecibido.getName());
-                city.setText(jugadorRecibido.getCity());
+
+                    int code = response.code();
+                    Log.i("G4", "codigo"+ " "+ code);
+
+                if(code == 201) {
+                    Jugador jugadorRecibido = response.body();
+                    username.setText(jugadorRecibido.getUsername());
+                    mail.setText(jugadorRecibido.getMail());
+                    lastname.setText(jugadorRecibido.getLastname());
+                    name.setText(jugadorRecibido.getName());
+                    city.setText(jugadorRecibido.getCity());
+                }
+                else if (code == 404)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder (PerfilActivity.this).create();
+                    alertDialog.setTitle("Error: "+ code );
+                    alertDialog.setMessage("404: Aun no te has registrado. Registrate!");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                else if (code == 500)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder (PerfilActivity.this).create();
+                    alertDialog.setTitle("Error: "+ code );
+                    alertDialog.setMessage("Password erróneo. Inténtalo otra vez!");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+
 
 
 

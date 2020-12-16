@@ -37,14 +37,17 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void Loger (View view) {
-        Intent intent = new Intent(this,PerfilActivity.class);
+        Intent intent = new Intent(this, PerfilActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
 
-
-
     }
 
+    public void BuscarAmigo (View view) {
+        Intent intent = new Intent(this,BuscadorActivity.class);
+        startActivity(intent);
+
+    }
 
 
 

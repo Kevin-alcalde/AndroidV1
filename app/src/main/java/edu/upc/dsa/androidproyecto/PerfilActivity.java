@@ -30,8 +30,11 @@ public class PerfilActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegistrar;
     Track track = new Track();
-    Jugador jugador = new Jugador();
-    String registrado;
+    Jugador jugador = null;
+    String user = null;
+    String ciudad =null;
+
+
 
 
     @Override
@@ -52,6 +55,42 @@ public class PerfilActivity extends AppCompatActivity {
         city=findViewById(R.id.cityVal);
         life=findViewById(R.id.lifeVal);
         level=findViewById(R.id.levelVal);
+        Bundle datosEnviados = getIntent().getExtras();
+        Jugador jugador = (Jugador)datosEnviados.getSerializable("prueba1");
+
+        Call<Jugador> call = ApiClient.getUserService().createPostLogin(jugador);
+        call.enqueue(new Callback<Jugador>() {
+            @Override
+            public void onResponse(Call<Jugador> call, Response<Jugador> response) {
+                id.setText(response.body().getId());
+                username.setText(response.body().getUsername());
+                mail.setText(response.body().getMail());
+                name.setText(response.body().getName());
+                lastname.setText(response.body().getLastname());
+                city.setText(response.body().getCity());
+                life.setText(response.body().getLife());
+                level.setText(response.body().getLevel());
+            }
+
+            @Override
+            public void onFailure(Call<Jugador> call, Throwable t) {
+
+            }
+        });
+
+
+
+      //  username.setText(jugador.getUsername());
+
+
+
+
+
+
+
+
+
+
        /* String idRecibido = "Kevin";
         String singer = "Kevin";
         Log.i("G4",idRecibido +" "+ singer);*/

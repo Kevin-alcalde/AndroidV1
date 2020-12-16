@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegistrar;
     int code;
-    String user = null;
-    String pass = null;
+    String user;
+    String pass;
 
 
 
@@ -43,16 +43,15 @@ public class MainActivity extends AppCompatActivity {
         editTextPassword=findViewById(R.id.passwordLog);
         btnLogin=findViewById(R.id.buttonLogin);
         btnRegistrar=findViewById(R.id.buttonRegister);
-        cargarSharedPreference();
+        //cargarSharedPreference();
     }
 
     private void cargarSharedPreference() {
         SharedPreferences preferences = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
         user = preferences.getString("user","No hay nada");
         pass = preferences.getString("password","no hay nada");
-        Log.i("G4", "user guardado"+ " "+ user);
-        Log.i("G4", "pass guardado"+ " "+ pass);
-        Intent login = new Intent(this, PerfilActivity.class);/*    Cambiar a que vaya al Dashboard   */
+        Bundle bundle  = new Bundle();
+        Intent login = new Intent(this, DashboardActivity.class);/*    Cambiar a que vaya al Dashboard   */
         if (user != null &&(pass != null)) {
             jugador = new Jugador(user, pass);
             Call<Jugador> call = ApiClient.getUserService().createPostLogin(jugador);
@@ -62,7 +61,20 @@ public class MainActivity extends AppCompatActivity {
                     code = response.code();
                     if (code == 201) {
                         /*    Cambiar a que vaya al Dashboard   */
+                        bundle.putString("nombreLogin",response.body().getName());
+
+
+                        Jugador jugadorlogin = response.body();
+                        String ciudad = jugadorlogin.getCity();
+
+                        bundle.putString("ciudad",ciudad);
+
+
+
+                        login.putExtras(bundle);
                         startActivity(login);
+
+
                     }
                 }
                 @Override
@@ -84,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     bundle.putString("password",editTextPassword.getText().toString());
     jugador = new Jugador(editTextUser.getText().toString(),editTextPassword.getText().toString());
     Call<Jugador> call = ApiClient.getUserService().createPostLogin(jugador);
-    Intent login = new Intent(this, PerfilActivity.class);
+    Intent login = new Intent(this, DashboardActivity.class);
     call.enqueue(new Callback<Jugador>() {
         @Override
         public void onResponse(Call<Jugador> call, Response<Jugador> response) {
@@ -98,7 +110,15 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("password", editTextPassword.getText().toString());
                     editor.commit();
                 }
+
+
+                bundle.putString("nombreLogin",response.body().getName());
+
+                /*bundle.putString("passwordLogin",response.body().getPassword()); */
+
+                login.putExtras(bundle);
                 startActivity(login);
+
             }
             else if (code == 404) {
                 AlertDialog alertDialog = new AlertDialog.Builder (MainActivity.this).create();

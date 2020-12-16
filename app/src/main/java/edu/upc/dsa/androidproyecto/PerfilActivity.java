@@ -57,8 +57,8 @@ public class PerfilActivity extends AppCompatActivity {
         Log.i("G4",idRecibido +" "+ singer);*/
 
        /* Track track1 = null;*/
-        Bundle miBundle = this.getIntent().getExtras();
-        registrado = miBundle.getString("prueba1");
+      /*  Bundle miBundle = this.getIntent().getExtras();
+
 
         username.setText(registrado);
 
@@ -156,6 +156,7 @@ public class PerfilActivity extends AppCompatActivity {
 
 
 */
+
 
     }
 

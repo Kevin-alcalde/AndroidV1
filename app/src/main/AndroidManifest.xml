@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProyecto"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ComunidadActivity"></activity>
+        <activity android:name=".EditarperfilActivity"></activity>
+        <activity android:name=".ComunidadActivity" />
         <activity android:name=".BuscadorActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".SplashActivity">

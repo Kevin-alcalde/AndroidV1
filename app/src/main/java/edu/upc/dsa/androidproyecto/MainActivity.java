@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegistrar;
     int code;
-    String user;
-    String pass;
+    String user = null ;
+    String pass = null ;
 
 
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         editTextPassword=findViewById(R.id.passwordLog);
         btnLogin=findViewById(R.id.buttonLogin);
         btnRegistrar=findViewById(R.id.buttonRegister);
-        //cargarSharedPreference();
+        cargarSharedPreference();
     }
 
     private void cargarSharedPreference() {
@@ -62,14 +62,10 @@ public class MainActivity extends AppCompatActivity {
                     if (code == 201) {
                         /*    Cambiar a que vaya al Dashboard   */
                         bundle.putString("nombreLogin",response.body().getName());
+                        bundle.putString("user",response.body().getUsername());
+                        bundle.putString("password",response.body().getPassword());
 
-
-                        Jugador jugadorlogin = response.body();
-                        String ciudad = jugadorlogin.getCity();
-
-                        bundle.putString("ciudad",ciudad);
-
-
+                        Log.i("G5",""+response.body().getName());
 
                         login.putExtras(bundle);
                         startActivity(login);
@@ -92,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
     /*Metodo para el boton Logearse ponerlo en otro if*/
     public void Login(View view){
     Bundle bundle  = new Bundle();
+    this.user= editTextUser.getText().toString();
+    this.pass = editTextPassword.getText().toString();
     bundle.putString("user",editTextUser.getText().toString());
     bundle.putString("password",editTextPassword.getText().toString());
     jugador = new Jugador(editTextUser.getText().toString(),editTextPassword.getText().toString());
@@ -106,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 if (editTextUser.getText().toString() != "" &&(editTextPassword.getText().toString()!="")) {
                     SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
+
                     editor.putString("user", editTextUser.getText().toString());
                     editor.putString("password", editTextPassword.getText().toString());
                     editor.commit();

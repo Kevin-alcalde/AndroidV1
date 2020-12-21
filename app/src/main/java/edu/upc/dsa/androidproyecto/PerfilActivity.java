@@ -4,8 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -62,6 +64,8 @@ public class PerfilActivity extends AppCompatActivity {
         call.enqueue(new Callback<Jugador>() {
             @Override
             public void onResponse(Call<Jugador> call, Response<Jugador> response) {
+
+
                 id.setText(response.body().getId());
                 username.setText(response.body().getUsername());
                 mail.setText(response.body().getMail());
@@ -80,124 +84,13 @@ public class PerfilActivity extends AppCompatActivity {
 
 
 
-      //  username.setText(jugador.getUsername());
-
-
-
-
-
-
-
-
-
-
-       /* String idRecibido = "Kevin";
-        String singer = "Kevin";
-        Log.i("G4",idRecibido +" "+ singer);*/
-
-       /* Track track1 = null;*/
-      /*  Bundle miBundle = this.getIntent().getExtras();
-
-
-        username.setText(registrado);
-
-        String nombre = miBundle.getString("user");
-        String nombre2 = miBundle.getString("password");
-        Log.i("G4",nombre +" "+ nombre2);
-
-
-        Jugador jugador = new Jugador (nombre,nombre2);
-        Call<Jugador> call = ApiClient.getUserService().createPostLogin(jugador);
-
-        call.enqueue(new Callback<Jugador>() {
-            @Override
-            public void onResponse(Call<Jugador> call, Response<Jugador> response) {
-
-                    int code = response.code();
-                    Log.i("G4", "codigo"+ " "+ code);
-
-                if(code == 201) {
-                    Jugador jugadorRecibido = response.body();
-                    username.setText(jugadorRecibido.getUsername());
-                    mail.setText(jugadorRecibido.getMail());
-                    lastname.setText(jugadorRecibido.getLastname());
-                    name.setText(jugadorRecibido.getName());
-                    city.setText(jugadorRecibido.getCity());
-                }
-                else if (code == 404)
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder (PerfilActivity.this).create();
-                    alertDialog.setTitle("Error: "+ code );
-                    alertDialog.setMessage("404: Aun no te has registrado. Registrate!");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                }
-                else if (code == 500)
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder (PerfilActivity.this).create();
-                    alertDialog.setTitle("Error: "+ code );
-                    alertDialog.setMessage("Password erróneo. Inténtalo otra vez!");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                }
-
-
-
-
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Jugador> call, Throwable t) {
-
-            }
-        });
-
-
-
-
-
-         /*
-
-
-
-        Track track = new Track (nombre,nombre2,"cancion");
-        Call<Track> call = ApiClient.getUserService().agregarTrack(track);
-        call.enqueue(new Callback<Track>() {
-            @Override
-            public void onResponse(Call<Track> call, Response<Track> response) {
-
-                Track trackRecibido = response.body();
-                id.setText(trackRecibido.getId());
-                username.setText(trackRecibido.getSinger());
-                name.setText(trackRecibido.getTitle());
-
-            }
-
-            @Override
-            public void onFailure(Call<Track> call, Throwable t) {
-
-            }
-        });
-
-
-
-
-*/
-
-
     }
+
+    public void editarActivity (View view) {
+        Intent intent = new Intent(this,EditarperfilActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

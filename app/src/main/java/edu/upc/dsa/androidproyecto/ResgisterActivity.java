@@ -65,12 +65,12 @@ public class ResgisterActivity extends AppCompatActivity {
 
 
         Jugador jugador = new Jugador (usernameText.getText().toString(),passwordText.getText().toString(),mailText.getText().toString(),nameText.getText().toString(),lastnameText.getText().toString(),cityText.getText().toString());
-        Call<Jugador> call = ApiClient.getUserService().createPostRegister(jugador);
+        Call<Void> call = ApiClient.getUserService().createPostRegister(jugador);
 
         ////////////////////////////////////////////////////
-        call.enqueue(new Callback<Jugador>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Jugador> call, Response<Jugador> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
 
                 code = response.code(); /*No marca el 201*/
 
@@ -81,7 +81,7 @@ public class ResgisterActivity extends AppCompatActivity {
 
                     AlertDialog alertDialog = new AlertDialog.Builder (ResgisterActivity.this).create();
                     alertDialog.setTitle("Error: "+ code );
-                    alertDialog.setMessage("404: Aun no te has registrado. Registrate!");
+                    alertDialog.setMessage("Ya estas registrado!, ahora logeate!");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -113,7 +113,7 @@ public class ResgisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Jugador> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
 
             }
 

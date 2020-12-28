@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PerfilActivity extends AppCompatActivity {
-    JugadorAdapter jugadorAdapter;
+
     TextView id;
     TextView username;
     TextView mail;
@@ -35,6 +35,7 @@ public class PerfilActivity extends AppCompatActivity {
     Jugador jugador = null;
     String user = null;
     String ciudad =null;
+    Bundle bundle;
 
 
 
@@ -61,6 +62,7 @@ public class PerfilActivity extends AppCompatActivity {
         Jugador jugador = (Jugador)datosEnviados.getSerializable("prueba1");
 
         Call<Jugador> call = ApiClient.getUserService().createPostLogin(jugador);
+
         call.enqueue(new Callback<Jugador>() {
             @Override
             public void onResponse(Call<Jugador> call, Response<Jugador> response) {
@@ -74,6 +76,8 @@ public class PerfilActivity extends AppCompatActivity {
                 city.setText(response.body().getCity());
                 life.setText(response.body().getLife());
                 level.setText(response.body().getLevel());
+                bundle = new Bundle();
+                bundle.putString("username",response.body().getUsername());
             }
 
             @Override
@@ -88,6 +92,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void editarActivity (View view) {
         Intent intent = new Intent(this,EditarperfilActivity.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

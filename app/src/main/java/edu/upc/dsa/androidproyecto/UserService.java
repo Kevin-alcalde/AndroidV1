@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -16,7 +17,7 @@ public interface UserService {
     Call<Jugador> createPostLogin(@Body Jugador jugador);
 
     @POST("users/registerUser")
-    Call<Jugador> createPostRegister(@Body Jugador jugador);
+    Call<Void> createPostRegister(@Body Jugador jugador);
 
     @GET("users/getUser/{username}")
     Call<Jugador> getJugadorByUserName(@Path("username")String name);
@@ -25,8 +26,10 @@ public interface UserService {
     Call<List<Jugador>> getAllusers();
 
     @PUT("users/updateUser")
-    Call<Jugador> actualizarJugador(@Body Jugador jugador);
+    Call<Void> actualizarJugador(@Body Jugador jugador);
 
+    @DELETE("users/deleteUser/{username}")
+    Call<Void> eliminarJugador(@Path("username")String username);
 
 
 

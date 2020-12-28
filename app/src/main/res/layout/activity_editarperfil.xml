@@ -137,13 +137,26 @@
         android:id="@+id/buttomEditarPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Editar"
+        android:layout_marginTop="12dp"
         android:background="@drawable/button_rounded_border"
+        android:onClick="editar"
+        android:text="Editar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editLevel" />
+
+    <Button
+        android:id="@+id/buttomDarseBaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_rounded_border"
+        android:onClick="eliminarUsuario"
+        android:text="Darse de Baja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttomEditarPerfil" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

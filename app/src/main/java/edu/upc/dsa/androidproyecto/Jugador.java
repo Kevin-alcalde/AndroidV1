@@ -15,7 +15,15 @@ public class Jugador implements Serializable {
     private String password;
     private String life;
     private String level;
+    private int level1;
 
+    public int getLevel1() {
+        return level1;
+    }
+
+    public void setLevel1(int level1) {
+        this.level1 = level1;
+    }
 
     public String getId() {
         return id;
@@ -96,6 +104,16 @@ public class Jugador implements Serializable {
         this.lastname = lastname;
         this.city = city;
         this.password = password;
+    }
+
+    public Jugador(String username, String mail, String name, String lastname, String city, String password, int level1) {
+        this.username = username;
+        this.mail = mail;
+        this.name = name;
+        this.lastname = lastname;
+        this.city = city;
+        this.password = password;
+        this.level1 = level1;
     }
 
     public Jugador(String id, String username, String mail, String name, String lastname, String city, String password, String life, String level) {

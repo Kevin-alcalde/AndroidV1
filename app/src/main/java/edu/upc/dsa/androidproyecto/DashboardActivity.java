@@ -53,8 +53,13 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(this,ComunidadActivity.class);
             startActivity(intent);
 
-
     }
+
+    public void Ranking (View view) {
+            Intent intent = new Intent (this, RankingActivity.class);
+            startActivity(intent);
+    }
+
 
 
 

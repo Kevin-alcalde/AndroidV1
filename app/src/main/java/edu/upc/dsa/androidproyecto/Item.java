@@ -1,4 +1,104 @@
 package edu.upc.dsa.androidproyecto;
 
-public class Item {
+import java.io.Serializable;
+import java.util.List;
+
+public class Item implements Serializable {
+    String id;
+    String name;
+    String level;
+    String type;
+    //atributo total = cantidad de un item
+    String total;
+    //el atributo value viene conectado a través del nivel del jugador
+    String value;
+    String image;
+    //id del jugador que tiene estos items
+    String idPlayer;
+
+    //obtener la lista de usuarios que tienen un ítem en concreto
+    List<Jugador> itemsByUser;
+
+    public Item() {
+
+    }
+
+    public Item(String name, String total) {
+        this.name = name;
+        this.total = total;
+    }
+
+    public Item(String name, String level, String type, String total, String value, String image, List<Jugador> itemsByUser) {
+        this.name = name;
+        this.level = level;
+        this.type = type;
+        this.total = total;
+        this.value = value;
+        this.image = image;
+        this.itemsByUser = itemsByUser;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getIdPlayer() {
+        return idPlayer;
+    }
+
+    public void setIdPlayer(String idPlayer) {
+        this.idPlayer = idPlayer;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", total='" + total + '\'' +
+                '}';
+    }
 }

@@ -31,6 +31,9 @@ public interface UserService {
     @DELETE("users/deleteUser/{username}")
     Call<Void> eliminarJugador(@Path("username")String username);
 
+    @GET("game/getItems")
+    Call<List<Item>> getItems();
+
 
 
 

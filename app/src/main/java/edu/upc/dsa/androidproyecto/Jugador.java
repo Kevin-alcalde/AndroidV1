@@ -16,6 +16,15 @@ public class Jugador implements Serializable {
     private String life;
     private String level;
     private int level1;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getLevel1() {
         return level1;

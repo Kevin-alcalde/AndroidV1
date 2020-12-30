@@ -59,10 +59,11 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent (this, RankingActivity.class);
             startActivity(intent);
     }
+    public void Tienda (View view) {
+            Intent intent= new Intent (this, TiendaActivity.class);
+            startActivity(intent);
 
-
-
-
+    }
 
 
 }

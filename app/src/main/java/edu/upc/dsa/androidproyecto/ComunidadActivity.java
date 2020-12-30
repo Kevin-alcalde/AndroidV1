@@ -49,8 +49,10 @@ public class ComunidadActivity extends AppCompatActivity {
 
                     myAdapter = new MyAdapter();  /*CORRECCION ARRIBA SE HA DECLARADO Y AQUI SE HA CREADO LA INSTANCIA*/
                     Log.i("G4", ""+jugadores);
+
                     myAdapter.setData(jugadores);
                     recyclerView.setAdapter(myAdapter);
+
                 }
             }
 

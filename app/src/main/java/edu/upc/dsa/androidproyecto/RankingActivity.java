@@ -29,6 +29,7 @@ public class RankingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ranking);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recyclerview);
+
         recyclerView.setHasFixedSize(true);
 
 
@@ -45,7 +46,7 @@ public class RankingActivity extends AppCompatActivity {
             public void onResponse(Call<List<Jugador>> call, Response<List<Jugador>> response) {
                 if (response.isSuccessful()) {
                     List<Jugador> jugadores = response.body();
-                    ordenarNivelDesc(jugadores);
+
                     myAdapter = new MyAdapterRanking();  /*CORRECCION ARRIBA SE HA DECLARADO Y AQUI SE HA CREADO LA INSTANCIA*/
                     Log.i("G4", ""+jugadores);
                     myAdapter.setData(jugadores);
@@ -55,24 +56,14 @@ public class RankingActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Jugador>> call, Throwable t) {
-
+                Log.i("G4", ""+t);
             }
         });
 
 
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Jugador> ordenarNivelDesc(List<Jugador> jugadoresAsc)
-    {
-        jugadoresAsc.sort(new Comparator<Jugador>() {
-            @Override
-            public int compare(Jugador o1, Jugador o2) {
-                return o1.getLevel1()-o2.getLevel1();
-            }
-        });
-        return jugadoresAsc;
-    }
+
 }
 
 

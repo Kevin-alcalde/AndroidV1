@@ -33,22 +33,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="name"
             android:layout_centerVertical="true"
             android:layout_marginStart="60dp"
-            android:textColor="@color/cardview_dark_background"
-            android:layout_marginLeft="60dp" />
+            android:layout_marginLeft="60dp"
+            android:text="name"
+            android:textColor="@color/black" />
+
         <TextView
             android:id="@+id/levelRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/nameRow"
             android:layout_centerVertical="true"
-
             android:layout_marginStart="60dp"
-            android:textColor="@color/cardview_dark_background"
+
             android:layout_marginLeft="60dp"
-            android:text="lastname"/>
+            android:layout_toRightOf="@+id/nameRow"
+            android:text="lastname"
+            android:textColor="@color/black" />
 
 
 

@@ -50,7 +50,7 @@ public class EditarperfilActivity extends AppCompatActivity {
 
     public void editar(View view){
 
-       Jugador jugador = new Jugador (id.getText().toString(),username.getText().toString(),mail.getText().toString(),name.getText().toString(),lastanme.getText().toString(),city.getText().toString(),password.getText().toString(),life.getText().toString(),level.getText().toString());
+       Jugador jugador = new Jugador (username.getText().toString(), mail.getText().toString(), name.getText().toString(), lastanme.getText().toString(), city.getText().toString(), password.getText().toString());
         Call<Void> call = ApiClient.getUserService().actualizarJugador(jugador);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -64,6 +64,9 @@ public class EditarperfilActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
+
+
+
                                 }
                             });
                     alertDialog.show();
@@ -79,7 +82,7 @@ public class EditarperfilActivity extends AppCompatActivity {
 
 
     public void eliminarUsuario(View view){
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         Call<Void> call = ApiClient.getUserService().eliminarJugador(usernameEliminar);/* Falta el bunle*/
         call.enqueue(new Callback<Void>() {
             @Override

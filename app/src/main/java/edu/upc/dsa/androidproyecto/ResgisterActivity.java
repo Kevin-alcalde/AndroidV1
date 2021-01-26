@@ -49,7 +49,7 @@ public class ResgisterActivity extends AppCompatActivity {
 
     /*Metodo para el boton Volver*/
     public void Volver(View view){
-        Intent volver = new Intent(this, MainActivity.class);
+        Intent volver = new Intent(this, LoginActivity.class);
         startActivity(volver);
 
     }
@@ -64,8 +64,8 @@ public class ResgisterActivity extends AppCompatActivity {
 
 
 
-        Jugador jugador = new Jugador (usernameText.getText().toString(),passwordText.getText().toString(),mailText.getText().toString(),nameText.getText().toString(),lastnameText.getText().toString(),cityText.getText().toString());
-        Call<Void> call = ApiClient.getUserService().createPostRegister(jugador);
+
+         Call<Void> call = ApiClient.getUserService().createPostRegister(usernameText.getText().toString(),passwordText.getText().toString(),mailText.getText().toString(),nameText.getText().toString(),lastnameText.getText().toString(),cityText.getText().toString());
 
         ////////////////////////////////////////////////////
         call.enqueue(new Callback<Void>() {

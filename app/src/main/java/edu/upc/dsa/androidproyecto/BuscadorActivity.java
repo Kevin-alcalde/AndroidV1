@@ -37,15 +37,6 @@ public class BuscadorActivity extends AppCompatActivity {
         apellido=findViewById(R.id.apellidoVal);
         correo=findViewById(R.id.correoVal);
         ciudad=findViewById(R.id.ciudadVal);
-
-
-
-
-
-
-
-
-
     }
 
     public void buscar(View view) {
@@ -54,16 +45,10 @@ public class BuscadorActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Jugador> call, Response<Jugador> response) {
                 if(response.code()==201){
-                    nombreEtiqueta.setText("Nombre");
-                    apellidoEtiqueta.setText("Apellido");
-                    correoEtiqueta.setText("Correo");
-                    ciudadEtiqueta.setText("Ciudad");
-                    nombre.setText(response.body().getName());
-                    apellido.setText(response.body().getLastname());
-                    correo.setText(response.body().getMail());
-                    ciudad.setText(response.body().getCity());
-
-
+                    nombreEtiqueta.setText(response.body().getUsername());
+                    apellidoEtiqueta.setText(response.body().getLastname());
+                    correoEtiqueta.setText(response.body().getMail());
+                    ciudadEtiqueta.setText(response.body().getCity());
                 }
                 else if (response.code()==404){
                     AlertDialog alertDialog = new AlertDialog.Builder (BuscadorActivity.this).create();
@@ -82,9 +67,20 @@ public class BuscadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Jugador> call, Throwable t) {
+                AlertDialog alertDialog = new AlertDialog.Builder (BuscadorActivity.this).create();
+                alertDialog.setTitle("Error" + t);
+                alertDialog.setMessage("Error en el sistema");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
 
             }
-        });
+        );
 
 
 

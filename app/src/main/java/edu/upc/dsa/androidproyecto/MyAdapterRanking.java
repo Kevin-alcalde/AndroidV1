@@ -36,7 +36,7 @@ public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.View
     public void onBindViewHolder(@NonNull MyAdapterRanking.ViewHolder holder, int position) {
         Jugador jugador = jugadores.get(position);
         String nombre = jugador.getName();
-        int nivel = jugador.getLevel1();
+        String nivel = jugador.getLevel();
 
         holder.name.setText(nombre);
         holder.level.setText(nivel);

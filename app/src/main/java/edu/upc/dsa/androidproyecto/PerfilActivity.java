@@ -59,32 +59,20 @@ public class PerfilActivity extends AppCompatActivity {
         life=findViewById(R.id.lifeVal);
         level=findViewById(R.id.levelVal);
         Bundle datosEnviados = getIntent().getExtras();
-        Jugador jugador = (Jugador)datosEnviados.getSerializable("prueba1");
+        user = datosEnviados.getString("user");
+        Log.i("G6",""+datosEnviados.getString("user"));
+        Log.i("G6",""+datosEnviados.getString("password"));
+        Jugador jugador =(Jugador) datosEnviados.getSerializable("usuario");
+        username.setText(jugador.getUsername());
+        mail.setText(jugador.getMail());
+        name.setText(jugador.getName());
+        lastname.setText(jugador.getLastname());
+        city.setText(jugador.getCity());
+        level.setText(String.valueOf(jugador.getLevel()));
 
-        Call<Jugador> call = ApiClient.getUserService().createPostLogin(jugador);
-
-        call.enqueue(new Callback<Jugador>() {
-            @Override
-            public void onResponse(Call<Jugador> call, Response<Jugador> response) {
 
 
-                id.setText(response.body().getId());
-                username.setText(response.body().getUsername());
-                mail.setText(response.body().getMail());
-                name.setText(response.body().getName());
-                lastname.setText(response.body().getLastname());
-                city.setText(response.body().getCity());
-                life.setText(response.body().getLife());
-                level.setText(response.body().getLevel());
-                bundle = new Bundle();
-                bundle.putString("username",response.body().getUsername());
-            }
 
-            @Override
-            public void onFailure(Call<Jugador> call, Throwable t) {
-
-            }
-        });
 
 
 
@@ -92,8 +80,11 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void editarActivity (View view) {
         Intent intent = new Intent(this,EditarperfilActivity.class);
+        bundle = new Bundle();
+        bundle.putString("username", user);
         intent.putExtras(bundle);
         startActivity(intent);
+
     }
 
 

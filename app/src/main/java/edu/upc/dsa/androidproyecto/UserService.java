@@ -17,7 +17,7 @@ public interface UserService {
     Call<Jugador> createPostLogin(@Body Jugador jugador);
 
     @POST("users/registerUser")
-    Call<Void> createPostRegister(@Body Jugador jugador);
+    Call<Void> createPostRegister(@Body String username, String password, String mail, String name, String lastname, String city );
 
     @GET("users/getUser/{username}")
     Call<Jugador> getJugadorByUserName(@Path("username")String name);
@@ -30,11 +30,17 @@ public interface UserService {
 
     @DELETE("users/deleteUser/{username}")
     Call<Void> eliminarJugador(@Path("username")String username);
+/////////////////////////////////////////////////////////////////////////////////////////
+
 
     @GET("game/getItems")
     Call<List<Item>> getItems();
 
+    @PUT("game/updateItem")
+    Call<Void> comprarItem(@Body Item item);
 
+    @GET("game/getItem/{name}")
+    Call<Item> dameItem(@Path("name")String name);
 
 
 

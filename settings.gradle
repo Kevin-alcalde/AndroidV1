@@ -1,2 +1,3 @@
-include ':app'
+include ':unityLibrary-release'
+include ':app', ':launcher-debug'
 rootProject.name = "AndroidProyecto"

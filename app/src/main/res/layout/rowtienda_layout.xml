@@ -13,12 +13,12 @@
             android:id="@+id/cantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="37dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="49dp"
+            android:layout_marginRight="49dp"
             android:text="CANTIDAD"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -50,6 +50,42 @@
             android:text="NAME"
             android:textColor="@color/black"
             android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/cuantoComprar"
+            android:layout_width="75dp"
+            android:layout_height="27dp"
+            android:layout_below="@+id/cantidad"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="11dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:gravity="center"
+
+            android:hint="cantidad"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/comprar"
+            android:layout_width="73dp"
+            android:layout_height="34dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="3dp"
+            android:layout_toStartOf="@+id/cuantoComprar"
+            android:layout_toLeftOf="@+id/cuantoComprar"
+            android:text="BUY"
+            android:textSize="14sp" />
+
     </RelativeLayout>
 
 
